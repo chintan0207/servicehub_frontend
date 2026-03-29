@@ -21,6 +21,7 @@ export function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<NotFoundPage />} />
 
           <Route element={<HomeLayout />}>
             <Route path="" element={<Home />} />
@@ -32,8 +33,6 @@ export function App() {
             <Route path="terms" element={<TermsOfService />} />
             <Route path="privacy" element={<PrivacyPolicy />} />
             <Route path="cookies" element={<CookiePolicy />} />
-            {/* Fallback route for unmatched paths */}
-            <Route path="*" element={<NotFoundPage />} />
           </Route>
           <Route element={<DashboardLayout />}>
             <Route path="dashboard" element={<Dashboard />} />

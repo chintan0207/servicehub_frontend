@@ -2,19 +2,25 @@ import { Outlet } from "react-router-dom"
 import Sidebar from "./Sidebar"
 import Topbar from "./Topbar"
 
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
+
+import { TooltipProvider } from "@/components/ui/tooltip"
+
 const DashboardLayout = () => {
   return (
-    <div className="flex h-screen">
-      <div>
+    <TooltipProvider>
+      <SidebarProvider>
         <Sidebar />
-      </div>
-      <div className="flex flex-1 flex-col">
-        <Topbar />
-        <main className="flex-1 overflow-auto p-6">
-          <Outlet />
-        </main>
-      </div>
-    </div>
+
+        <SidebarInset>
+          <Topbar />
+
+          <main className="flex flex-1 flex-col p-6">
+            <Outlet />
+          </main>
+        </SidebarInset>
+      </SidebarProvider>
+    </TooltipProvider>
   )
 }
 
