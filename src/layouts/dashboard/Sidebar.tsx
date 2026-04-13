@@ -18,6 +18,20 @@ import {
   ChevronDown,
   ChevronRight,
 } from "lucide-react"
+import {
+  LayoutDashboard,
+  Calendar,
+  User,
+  FileText,
+  CheckSquare,
+  ClipboardList,
+  Star,
+  DollarSign,
+  Users,
+  Shield,
+  MessageSquare,
+  Mail,
+} from "lucide-react"
 
 import {
   DropdownMenu,
@@ -27,11 +41,11 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible"
+// import {
+//   Collapsible,
+//   CollapsibleTrigger,
+//   CollapsibleContent,
+// } from "@/components/ui/collapsible"
 
 import {
   Tooltip,
@@ -40,6 +54,7 @@ import {
 } from "@/components/ui/tooltip"
 
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router-dom"
 
 /* ---------------- CONFIG ---------------- */
 
@@ -48,25 +63,13 @@ const workspace = {
   role: "Admin",
 }
 
-const platformMenus = [
-  {
-    title: "Playground",
-    icon: Folder,
-    children: ["History", "Starred", "Settings"],
-  },
-]
-
-const mainMenu = [
-  { title: "Models", icon: Folder },
-  { title: "Documentation", icon: BookOpen },
-  { title: "Settings", icon: Settings },
-]
-
-const projects = [
-  { title: "Design Engineering", icon: Grid },
-  { title: "Sales & Marketing", icon: Clock },
-  { title: "Travel", icon: Map },
-]
+// const platformMenus = [
+//   {
+//     title: "settings",
+//     icon: Folder,
+//     children: ["History", "Starred", "Settings"],
+//   },
+// ]
 
 const user = {
   name: "Admin",
@@ -76,7 +79,51 @@ const user = {
 
 /* ---------------- SIDEBAR ---------------- */
 
+const getNavItems = (role: "customer" | "provider" | "admin") => {
+  switch (role) {
+    case "customer":
+      return [
+        {
+          name: "Dashboard",
+          href: "/customer/dashboard",
+          icon: LayoutDashboard,
+        },
+        { name: "My Bookings", href: "/customer/bookings", icon: Calendar },
+        { name: "My Reviews", href: "/customer/reviews", icon: Star },
+        { name: "Profile", href: "/customer/profile", icon: User },
+      ]
+    case "provider":
+      return [
+        {
+          name: "Dashboard",
+          href: "/provider/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          name: "Booking Requests",
+          href: "/provider/requests",
+          icon: ClipboardList,
+        },
+        { name: "Active Jobs", href: "/provider/jobs", icon: CheckSquare },
+        { name: "Availability", href: "/provider/availability", icon: Clock },
+        { name: "Earnings", href: "/provider/earnings", icon: DollarSign },
+        { name: "Profile", href: "/provider/profile", icon: User },
+      ]
+    case "admin":
+      return [
+        { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+        { name: "User Management", href: "/admin/users", icon: Users },
+        { name: "Provider Approval", href: "/admin/approvals", icon: Shield },
+        { name: "Categories", href: "/admin/categories", icon: FileText },
+        { name: "Bookings", href: "/admin/bookings", icon: Calendar },
+        { name: "Reviews", href: "/admin/reviews", icon: MessageSquare },
+        { name: "Contact Submissions", href: "/admin/contact", icon: Mail },
+      ]
+  }
+}
+
 const Sidebar = () => {
+  const mainMenu = getNavItems("admin")
   return (
     <SidebarRoot collapsible="icon">
       {/* HEADER */}
@@ -108,19 +155,45 @@ const Sidebar = () => {
 
           <DropdownMenuContent align="start">
             <DropdownMenuItem>{workspace.name}</DropdownMenuItem>
-            <DropdownMenuItem>Create workspace</DropdownMenuItem>
+            <DropdownMenuItem>Create categories</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarHeader>
 
       {/* CONTENT */}
       <SidebarContent className="p-3 group-data-[collapsible=icon]:p-1">
-        {/* PLATFORM */}
-        <div className="px-2 py-3 text-sm text-muted-foreground group-data-[collapsible=icon]:hidden">
-          Platform
-        </div>
+        <SidebarMenu>
+          {mainMenu.map((item) => {
+            const Icon = item.icon
 
-        {platformMenus.map((menu) => {
+            return (
+              <SidebarMenuItem key={item.name}>
+                <Link to={item.href}>
+                  {" "}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <SidebarMenuButton className="p-5 px-2">
+                        <Icon />
+
+                        <span className="group-data-[collapsible=icon]:hidden">
+                          {item.name}
+                        </span>
+                      </SidebarMenuButton>
+                    </TooltipTrigger>
+
+                    <TooltipContent
+                      side="right"
+                      className="hidden group-data-[collapsible=icon]:block"
+                    >
+                      {item.name}
+                    </TooltipContent>
+                  </Tooltip>{" "}
+                </Link>
+              </SidebarMenuItem>
+            )
+          })}
+        </SidebarMenu>
+        {/* {platformMenus.map((menu) => {
           const Icon = menu.icon
 
           return (
@@ -156,71 +229,9 @@ const Sidebar = () => {
               </SidebarMenu>
             </Collapsible>
           )
-        })}
+        })} */}
 
         {/* MAIN MENU */}
-        <SidebarMenu className="mt-4">
-          {mainMenu.map((item) => {
-            const Icon = item.icon
-
-            return (
-              <SidebarMenuItem key={item.title}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <SidebarMenuButton>
-                      <Icon />
-
-                      <span className="group-data-[collapsible=icon]:hidden">
-                        {item.title}
-                      </span>
-                    </SidebarMenuButton>
-                  </TooltipTrigger>
-
-                  <TooltipContent
-                    side="right"
-                    className="hidden group-data-[collapsible=icon]:block"
-                  >
-                    {item.title}
-                  </TooltipContent>
-                </Tooltip>
-              </SidebarMenuItem>
-            )
-          })}
-        </SidebarMenu>
-
-        {/* PROJECTS */}
-        <div className="mt-6 px-2 py-2 text-sm text-muted-foreground group-data-[collapsible=icon]:hidden">
-          Projects
-        </div>
-
-        <SidebarMenu>
-          {projects.map((project) => {
-            const Icon = project.icon
-
-            return (
-              <SidebarMenuItem key={project.title}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <SidebarMenuButton>
-                      <Icon />
-
-                      <span className="group-data-[collapsible=icon]:hidden">
-                        {project.title}
-                      </span>
-                    </SidebarMenuButton>
-                  </TooltipTrigger>
-
-                  <TooltipContent
-                    side="right"
-                    className="hidden group-data-[collapsible=icon]:block"
-                  >
-                    {project.title}
-                  </TooltipContent>
-                </Tooltip>
-              </SidebarMenuItem>
-            )
-          })}
-        </SidebarMenu>
       </SidebarContent>
 
       {/* FOOTER */}

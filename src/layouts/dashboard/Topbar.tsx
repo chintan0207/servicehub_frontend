@@ -1,5 +1,4 @@
 import { SidebarTrigger } from "@/components/ui/sidebar"
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -13,9 +12,8 @@ import {
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
-import { Bell, Menu, Sun, Moon, User, Settings, LogOut } from "lucide-react"
+import { Bell,Sun, Moon, User, Settings, LogOut } from "lucide-react"
 
-import Sidebar from "./Sidebar"
 import { Link } from "react-router-dom"
 
 /* ---------------- DATA ---------------- */
@@ -45,7 +43,7 @@ const Topbar = () => {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
-      <div className="flex h-16 items-center gap-4 px-6">
+      <div className="flex h-16 items-center gap-4 px-2">
         {/* Desktop Sidebar Toggle */}
         <SidebarTrigger />
 
@@ -80,7 +78,7 @@ const Topbar = () => {
           {/* User Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center gap-2">
+              <Button variant="ghost" className="flex items-center gap-2 py-5">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback>{initials}</AvatarFallback>
                 </Avatar>

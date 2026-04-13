@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import DashboardLayout from "./layouts/dashboard/DashboardLayout"
-import Dashboard from "./features/dashboard/pages/Dashboard"
 import HomeLayout from "./layouts/home/HomeLayout"
 import Home from "./features/home/pages/Home"
 import Login from "./features/auth/pages/Login"
@@ -13,6 +12,13 @@ import Contact from "./features/contact/pages/Contact"
 import AboutUs from "./features/aboutus/pages/AboutUs"
 import CookiePolicy from "./features/cookiepolicy/pages/CookiePolicy"
 import NotFoundPage from "./components/common/NotFoundPage"
+import AdminDashboard from "./features/admin/pages/AdminDashboard"
+import ContactSubmissions from "./features/admin/pages/ContactSubmissions"
+import Reviews from "./features/admin/pages/Reviews"
+import UserManagement from "./features/admin/pages/UserManagement"
+import ProviderApproval from "./features/admin/pages/ProviderApproval"
+import CategoryManagement from "./features/admin/pages/CategoryManagement"
+import BookingMonitoring from "./features/admin/pages/BookingMonitoring"
 
 export function App() {
   return (
@@ -35,7 +41,13 @@ export function App() {
             <Route path="cookies" element={<CookiePolicy />} />
           </Route>
           <Route element={<DashboardLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="admin/dashboard" element={<AdminDashboard />} />
+            <Route path="admin/users" element={<UserManagement />} />
+            <Route path="admin/approvals" element={<ProviderApproval />} />
+            <Route path="admin/categories" element={<CategoryManagement />} />
+            <Route path="admin/Bookings" element={<BookingMonitoring />} />
+            <Route path="admin/reviews" element={<Reviews />} />
+            <Route path="admin/contact" element={<ContactSubmissions />} />
           </Route>
         </Routes>
       </BrowserRouter>
