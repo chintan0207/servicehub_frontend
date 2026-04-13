@@ -19,6 +19,16 @@ import UserManagement from "./features/admin/pages/UserManagement"
 import ProviderApproval from "./features/admin/pages/ProviderApproval"
 import CategoryManagement from "./features/admin/pages/CategoryManagement"
 import BookingMonitoring from "./features/admin/pages/BookingMonitoring"
+import ProviderProfile from "./features/provider/pages/ProviderProfile"
+import ActiveJobs from "./features/provider/pages/ActiveJobs"
+import Earnings from "./features/provider/pages/Earnings"
+import BookingRequests from "./features/provider/pages/BookingRequests"
+import Availability from "./features/provider/pages/Availability"
+import ProviderDashboard from "./features/provider/pages/ProviderDashboard"
+import Dashboard from "./features/customer/pages/Dashboard"
+import MyBookings from "./features/customer/pages/MyBookings"
+import MyReviews from "./features/customer/pages/MyReviews"
+import Profile from "./features/customer/pages/Profile"
 
 export function App() {
   return (
@@ -48,6 +58,18 @@ export function App() {
             <Route path="admin/Bookings" element={<BookingMonitoring />} />
             <Route path="admin/reviews" element={<Reviews />} />
             <Route path="admin/contact" element={<ContactSubmissions />} />
+
+            <Route path="provider/dashboard" element={<ProviderDashboard />} />
+            <Route path="provider/availability" element={<Availability />} />
+            <Route path="provider/requests" element={<BookingRequests />} />
+            <Route path="provider/earnings" element={<Earnings />} />
+            <Route path="provider/profile" element={<ProviderProfile />} />
+            <Route path="provider/jobs" element={<ActiveJobs />} />
+
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/bookings" element={<MyBookings />} />
+            <Route path="/reviews" element={<MyReviews />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

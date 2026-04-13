@@ -9,14 +9,9 @@ import {
 } from "@/components/ui/sidebar"
 
 import {
-  Grid,
-  Folder,
-  BookOpen,
-  Settings,
+ 
   Clock,
-  Map,
   ChevronDown,
-  ChevronRight,
 } from "lucide-react"
 import {
   LayoutDashboard,
@@ -63,13 +58,6 @@ const workspace = {
   role: "Admin",
 }
 
-// const platformMenus = [
-//   {
-//     title: "settings",
-//     icon: Folder,
-//     children: ["History", "Starred", "Settings"],
-//   },
-// ]
 
 const user = {
   name: "Admin",
@@ -85,12 +73,12 @@ const getNavItems = (role: "customer" | "provider" | "admin") => {
       return [
         {
           name: "Dashboard",
-          href: "/customer/dashboard",
+          href: "/dashboard",
           icon: LayoutDashboard,
         },
-        { name: "My Bookings", href: "/customer/bookings", icon: Calendar },
-        { name: "My Reviews", href: "/customer/reviews", icon: Star },
-        { name: "Profile", href: "/customer/profile", icon: User },
+        { name: "My Bookings", href: "/bookings", icon: Calendar },
+        { name: "My Reviews", href: "/reviews", icon: Star },
+        { name: "Profile", href: "/profile", icon: User },
       ]
     case "provider":
       return [
@@ -123,7 +111,7 @@ const getNavItems = (role: "customer" | "provider" | "admin") => {
 }
 
 const Sidebar = () => {
-  const mainMenu = getNavItems("admin")
+  const mainMenu = getNavItems("customer")
   return (
     <SidebarRoot collapsible="icon">
       {/* HEADER */}
@@ -193,44 +181,7 @@ const Sidebar = () => {
             )
           })}
         </SidebarMenu>
-        {/* {platformMenus.map((menu) => {
-          const Icon = menu.icon
-
-          return (
-            <Collapsible key={menu.title} className="group/collapsible">
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton>
-                      <Icon />
-
-                      <span className="group-data-[collapsible=icon]:hidden">
-                        {menu.title}
-                      </span>
-
-                      <ChevronRight className="ml-auto transition-transform group-data-[collapsible=icon]:hidden group-data-[state=open]/collapsible:rotate-90" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-
-                  <CollapsibleContent>
-                    <SidebarMenu className="ml-6 border-l pl-4">
-                      {menu.children.map((child) => (
-                        <SidebarMenuItem key={child}>
-                          <SidebarMenuButton>
-                            <span className="group-data-[collapsible=icon]:hidden">
-                              {child}
-                            </span>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
-                      ))}
-                    </SidebarMenu>
-                  </CollapsibleContent>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </Collapsible>
-          )
-        })} */}
-
+       
         {/* MAIN MENU */}
       </SidebarContent>
 
@@ -248,7 +199,7 @@ const Sidebar = () => {
                 <span className="text-sm font-medium">{user.name}</span>
                 <span className="text-xs text-muted-foreground">
                   {user.email}
-                </span>
+                 </span>
               </div>
               <ChevronDown className="ml-auto h-4 w-4 group-data-[collapsible=icon]:hidden" />
             </Button>
