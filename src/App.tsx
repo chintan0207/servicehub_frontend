@@ -29,6 +29,7 @@ import Dashboard from "./features/customer/pages/Dashboard"
 import MyBookings from "./features/customer/pages/MyBookings"
 import MyReviews from "./features/customer/pages/MyReviews"
 import Profile from "./features/customer/pages/Profile"
+import { Toaster } from "sonner"
 
 export function App() {
   return (
@@ -72,6 +73,7 @@ export function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
+        <Toaster richColors position="top-right" />
       </BrowserRouter>
     </>
   )
