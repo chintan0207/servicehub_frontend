@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signupSchema, type SignupFormData } from "../schema/auth.schema"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
 
@@ -15,8 +15,12 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card"
+import { useAuthStore } from "@/stores/useAuthStore"
 
 const Signup = () => {
+  const navigate = useNavigate()
+  const { signup } = useAuthStore()
+
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -34,8 +38,17 @@ const Signup = () => {
 
   const role = watch("role")
 
-  const onSubmit = (data: SignupFormData) => {
-    console.log(data)
+  const onSubmit = async (data: SignupFormData) => {
+    const success = await signup({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      role: data.role,
+    })
+
+    if (success) {
+      navigate("/login")
+    }
   }
 
   return (

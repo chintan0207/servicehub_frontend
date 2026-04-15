@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema, type LoginFormData } from "../schema/auth.schema"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
 
@@ -15,8 +15,11 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card"
+import { useAuthStore } from "@/stores/useAuthStore"
 
 const Login = () => {
+  const { login } = useAuthStore()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -27,8 +30,20 @@ const Login = () => {
     resolver: zodResolver(loginSchema),
   })
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data)
+  const onSubmit = async (data: LoginFormData) => {
+    const success = await login(data.email, data.password)
+
+    if (success) {
+      const role = useAuthStore.getState().user?.role
+
+      if (role === "provider") {
+        navigate("/provider/dashboard")
+      } else if (role === "admin") {
+        navigate("/admin/dashboard")
+      } else{
+        navigate("/dashboard")
+      }
+    }
   }
 
   return (
@@ -44,7 +59,7 @@ const Login = () => {
             {/* Email */}
             <div className="space-y-2">
               <Label>Email</Label>
-              <Input {...register("email")}  />
+              <Input {...register("email")} />
               {errors.email && (
                 <p className="text-sm text-destructive">
                   {errors.email.message}

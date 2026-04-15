@@ -69,7 +69,7 @@ export const useAuthStore = create<AuthState>()(
         try {
           set({ isLoading: true })
 
-          const res = await ApiClient.post("/auth/signup", {
+          const res = await ApiClient.post("/auth/register", {
             name,
             email,
             password,
