@@ -93,7 +93,7 @@ const getNavItems = (role: "customer" | "provider" | "admin") => {
 }
 
 const Sidebar = () => {
-  const { user } = useAuthStore()
+  const { user,logout } = useAuthStore()
   const mainMenu = getNavItems(user?.role as any)
   return (
     <SidebarRoot collapsible="icon">
@@ -204,7 +204,7 @@ const Sidebar = () => {
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem>Log out</DropdownMenuItem>
+            <DropdownMenuItem onClick={logout} >Log out</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarFooter>

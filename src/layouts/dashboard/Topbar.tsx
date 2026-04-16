@@ -12,10 +12,11 @@ import {
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
-import { Bell, Sun, Moon, User, Settings, LogOut } from "lucide-react"
+import { Bell, User, Settings, LogOut } from "lucide-react"
 
 import { Link } from "react-router-dom"
 import { useAuthStore } from "@/stores/useAuthStore"
+import { ThemeToggle } from "@/components/ThemeToggle"
 
 const notifications = 3
 
@@ -25,7 +26,7 @@ const profileMenu = [
 ]
 
 const Topbar = () => {
-  const { logout,user } = useAuthStore()
+  const { logout, user } = useAuthStore()
 
   const initials = user?.name
     .split(" ")
@@ -60,11 +61,7 @@ const Topbar = () => {
             </Badge>
           </Button>
 
-          {/* Theme Button (UI only) */}
-          <Button variant="ghost" size="icon">
-            <Sun className="h-5 w-5" />
-            <Moon className="absolute h-5 w-5 opacity-0" />
-          </Button>
+          <ThemeToggle />
 
           {/* User Dropdown */}
           <DropdownMenu>

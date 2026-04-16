@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/ThemeToggle"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -13,8 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { useAuthStore } from "@/stores/useAuthStore"
-import { Menu, Moon, User } from "lucide-react"
-import { use } from "react"
+import { Menu, User } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
@@ -69,9 +69,7 @@ const Navbar = () => {
           {/* Right Section */}
           <div className="flex items-center gap-4">
             {/* Theme Button */}
-            <Button variant="ghost" size="icon">
-              <Moon className="h-5 w-5" />
-            </Button>
+            <ThemeToggle />
 
             {isAuthenticated && (
               <DropdownMenu>
