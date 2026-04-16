@@ -34,7 +34,7 @@ const Login = () => {
     const success = await login(data.email, data.password)
 
     if (success) {
-      const role = user?.role
+      const role = useAuthStore.getState().user?.role
 
       if (role === "provider") {
         navigate("/provider/dashboard")

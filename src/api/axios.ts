@@ -23,38 +23,38 @@ ApiClient.interceptors.request.use(
   }
 )
 
-ApiClient.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config
+// ApiClient.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     const originalRequest = error.config
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true
+//     if (error.response?.status === 401 && !originalRequest._retry) {
+//       originalRequest._retry = true
 
-      try {
-        const refreshToken = localStorage.getItem("refreshToken")
+//       try {
+//         const refreshToken = localStorage.getItem("refreshToken")
 
-        const res = await axios.post(import.meta.env.VITE_REFRESH_URL, {
-          refreshToken,
-        })
+//         const res = await axios.post(import.meta.env.VITE_REFRESH_URL, {
+//           refreshToken,
+//         })
 
-        const newAccessToken = res.data.accessToken
+//         const newAccessToken = res.data.accessToken
 
-        localStorage.setItem("accessToken", newAccessToken)
+//         localStorage.setItem("accessToken", newAccessToken)
 
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
+//         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
 
-        return ApiClient(originalRequest)
-      } catch (refreshError) {
-        localStorage.removeItem("accessToken")
-        localStorage.removeItem("refreshToken")
-        console.error("Refresh token failed:", refreshError)
-        window.location.href = "/login"
-      }
-    }
+//         return ApiClient(originalRequest)
+//       } catch (refreshError) {
+//         localStorage.removeItem("accessToken")
+//         localStorage.removeItem("refreshToken")
+//         console.error("Refresh token failed:", refreshError)
+//         window.location.href = "/login"
+//       }
+//     }
 
-    return Promise.reject(error)
-  }
-)
+//     return Promise.reject(error)
+//   }
+// )
 
 export default ApiClient

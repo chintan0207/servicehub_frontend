@@ -4,6 +4,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -14,7 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { useAuthStore } from "@/stores/useAuthStore"
-import { Menu, User } from "lucide-react"
+import { LayoutDashboard, LogOut, Menu, User } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
@@ -82,17 +83,25 @@ const Navbar = () => {
                     <User className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
-
                 <DropdownMenuContent align="end">
+                  <div className="px-2 py-1.5 text-sm font-medium">
+                    {user?.name}
+                  </div>
+                  <div className="px-2 py-1.5 text-xs text-muted-foreground">
+                    {user?.email}
+                  </div>
+                  <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link to={getDashboardRoute()}>Dashboard</Link>
+                    <Link to={getDashboardRoute()}>
+                      <LayoutDashboard className="mr-2 h-4 w-4" />
+                      Dashboard
+                    </Link>
                   </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild>
-                    <Link to="/profile">Profile</Link>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={logout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
                   </DropdownMenuItem>
-
-                  <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
