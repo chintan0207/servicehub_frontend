@@ -12,10 +12,26 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { useAuthStore } from "@/stores/useAuthStore"
 import { Menu, Moon, User } from "lucide-react"
+import { use } from "react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
+  const { isAuthenticated, logout, user } = useAuthStore()
+
+  const getDashboardRoute = () => {
+    switch (user?.role) {
+      case "admin":
+        return "/admin/dashboard"
+      case "provider":
+        return "/provider/dashboard"
+      case "customer":
+        return "/dashboard"
+      default:
+        return "/"
+    }
+  }
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
@@ -57,41 +73,43 @@ const Navbar = () => {
               <Moon className="h-5 w-5" />
             </Button>
 
-            {/* User Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="hidden md:flex">
-                  <User className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
+            {isAuthenticated && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="hidden md:flex"
+                  >
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
 
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link to="/dashboard">Dashboard</Link>
-                </DropdownMenuItem>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem asChild>
+                    <Link to={getDashboardRoute()}>Dashboard</Link>
+                  </DropdownMenuItem>
 
-                <DropdownMenuItem asChild>
-                  <Link to="/profile">Profile</Link>
-                </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile">Profile</Link>
+                  </DropdownMenuItem>
 
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+
+            {isAuthenticated ? (
+              <Button asChild className="hidden md:flex">
+                <Link to={getDashboardRoute()}>Dashboard</Link>
+              </Button>
+            ) : (
+              <Button variant="outline" asChild className="hidden md:flex">
+                <Link to="/login">Login</Link>
+              </Button>
+            )}
 
             {/* Login Button (Desktop) */}
-            <Button variant="outline" asChild className="hidden md:flex">
-              <Link to="/login">Login</Link>
-            </Button>
-
-            {/* Signup Button (Desktop) */}
-            <Button asChild className="hidden md:flex">
-              <Link to="/signup">Sign Up</Link>
-            </Button>
-
-            {/* Dashboard Button (Desktop) */}
-            <Button asChild className="hidden md:flex">
-              <Link to="/dashboard">Dashboard</Link>
-            </Button>
 
             {/* Mobile Menu */}
             <Sheet>

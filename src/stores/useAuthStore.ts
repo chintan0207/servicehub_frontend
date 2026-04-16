@@ -46,7 +46,7 @@ export const useAuthStore = create<AuthState>()(
             email,
             password,
           })
-
+          console.log(res.data.message)
           const { user, accessToken } = res.data.data
 
           set({
@@ -55,7 +55,7 @@ export const useAuthStore = create<AuthState>()(
             isAuthenticated: true,
             isLoading: false,
           })
-          toast.success("Login successful")
+          toast.success(res.data.message || "Login successful")
           return true
         } catch (error: any) {
           set({ isLoading: false })
@@ -75,16 +75,10 @@ export const useAuthStore = create<AuthState>()(
             password,
             role,
           })
-
-          const { user, accessToken } = res.data.data
-
           set({
-            user,
-            accessToken,
-            isAuthenticated: true,
             isLoading: false,
           })
-          toast.success("Account created successfully")
+          toast.success(res.data.message || "Account created successfully")
           return true
         } catch (error: any) {
           set({ isLoading: false })

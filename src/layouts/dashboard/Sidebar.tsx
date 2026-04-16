@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Sidebar as SidebarRoot,
   SidebarHeader,
@@ -8,11 +9,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 
-import {
- 
-  Clock,
-  ChevronDown,
-} from "lucide-react"
+import { Clock, ChevronDown } from "lucide-react"
 import {
   LayoutDashboard,
   Calendar,
@@ -50,22 +47,7 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
-
-/* ---------------- CONFIG ---------------- */
-
-const workspace = {
-  name: "ServiceHub",
-  role: "Admin",
-}
-
-
-const user = {
-  name: "Admin",
-  email: "admin@servicehub.com",
-  avatar: "https://github.com/shadcn.png",
-}
-
-/* ---------------- SIDEBAR ---------------- */
+import { useAuthStore } from "@/stores/useAuthStore"
 
 const getNavItems = (role: "customer" | "provider" | "admin") => {
   switch (role) {
@@ -111,7 +93,8 @@ const getNavItems = (role: "customer" | "provider" | "admin") => {
 }
 
 const Sidebar = () => {
-  const mainMenu = getNavItems("customer")
+  const { user } = useAuthStore()
+  const mainMenu = getNavItems(user?.role as any)
   return (
     <SidebarRoot collapsible="icon">
       {/* HEADER */}
@@ -125,15 +108,15 @@ const Sidebar = () => {
               {/* Logo */}
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
                 <span className="text-sm font-bold text-primary-foreground">
-                  {workspace.name.charAt(0)}
+                  S
                 </span>
               </div>
 
               {/* Text */}
               <div className="flex flex-col text-left group-data-[collapsible=icon]:hidden">
-                <span className="text-sm font-semibold">{workspace.name}</span>
+                <span className="text-sm font-semibold">ServiceHub</span>
                 <span className="text-xs text-muted-foreground">
-                  {workspace.role}
+                  {user?.role}
                 </span>
               </div>
 
@@ -142,7 +125,9 @@ const Sidebar = () => {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="start">
-            <DropdownMenuItem>{workspace.name}</DropdownMenuItem>
+            <Link to="/">
+              <DropdownMenuItem>ServiceHub</DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>Create categories</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -181,7 +166,7 @@ const Sidebar = () => {
             )
           })}
         </SidebarMenu>
-       
+
         {/* MAIN MENU */}
       </SidebarContent>
 
@@ -194,12 +179,15 @@ const Sidebar = () => {
               className="py-7 group-data-[collapsible=icon]:p-0"
             >
               {" "}
-              <img src={user.avatar} className="h-8 w-8 rounded-full" />
+              <img
+                src="https://github.com/shadcn.png"
+                className="h-8 w-8 rounded-full"
+              />
               <div className="flex flex-col text-left group-data-[collapsible=icon]:hidden">
-                <span className="text-sm font-medium">{user.name}</span>
+                <span className="text-sm font-medium">{user?.name}</span>
                 <span className="text-xs text-muted-foreground">
-                  {user.email}
-                 </span>
+                  {user?.email}
+                </span>
               </div>
               <ChevronDown className="ml-auto h-4 w-4 group-data-[collapsible=icon]:hidden" />
             </Button>

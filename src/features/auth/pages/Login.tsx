@@ -18,7 +18,7 @@ import {
 import { useAuthStore } from "@/stores/useAuthStore"
 
 const Login = () => {
-  const { login } = useAuthStore()
+  const { login, user } = useAuthStore()
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
 
@@ -34,13 +34,13 @@ const Login = () => {
     const success = await login(data.email, data.password)
 
     if (success) {
-      const role = useAuthStore.getState().user?.role
+      const role = user?.role
 
       if (role === "provider") {
         navigate("/provider/dashboard")
       } else if (role === "admin") {
         navigate("/admin/dashboard")
-      } else{
+      } else {
         navigate("/dashboard")
       }
     }

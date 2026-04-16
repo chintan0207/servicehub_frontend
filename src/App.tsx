@@ -30,14 +30,17 @@ import MyBookings from "./features/customer/pages/MyBookings"
 import MyReviews from "./features/customer/pages/MyReviews"
 import Profile from "./features/customer/pages/Profile"
 import { Toaster } from "sonner"
+import { ProtectedRoute, PublicRoute } from "./lib/ProtectedRoute"
 
 export function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
 
           <Route element={<HomeLayout />}>
@@ -51,26 +54,37 @@ export function App() {
             <Route path="privacy" element={<PrivacyPolicy />} />
             <Route path="cookies" element={<CookiePolicy />} />
           </Route>
-          <Route element={<DashboardLayout />}>
-            <Route path="admin/dashboard" element={<AdminDashboard />} />
-            <Route path="admin/users" element={<UserManagement />} />
-            <Route path="admin/approvals" element={<ProviderApproval />} />
-            <Route path="admin/categories" element={<CategoryManagement />} />
-            <Route path="admin/Bookings" element={<BookingMonitoring />} />
-            <Route path="admin/reviews" element={<Reviews />} />
-            <Route path="admin/contact" element={<ContactSubmissions />} />
-
-            <Route path="provider/dashboard" element={<ProviderDashboard />} />
-            <Route path="provider/availability" element={<Availability />} />
-            <Route path="provider/requests" element={<BookingRequests />} />
-            <Route path="provider/earnings" element={<Earnings />} />
-            <Route path="provider/profile" element={<ProviderProfile />} />
-            <Route path="provider/jobs" element={<ActiveJobs />} />
-
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/bookings" element={<MyBookings />} />
-            <Route path="/reviews" element={<MyReviews />} />
-            <Route path="/profile" element={<Profile />} />
+          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+            <Route element={<DashboardLayout />}>
+              <Route path="admin/dashboard" element={<AdminDashboard />} />
+              <Route path="admin/users" element={<UserManagement />} />
+              <Route path="admin/approvals" element={<ProviderApproval />} />
+              <Route path="admin/categories" element={<CategoryManagement />} />
+              <Route path="admin/Bookings" element={<BookingMonitoring />} />
+              <Route path="admin/reviews" element={<Reviews />} />
+              <Route path="admin/contact" element={<ContactSubmissions />} />
+            </Route>
+          </Route>
+          <Route element={<ProtectedRoute allowedRoles={["provider"]} />}>
+            <Route element={<DashboardLayout />}>
+              <Route
+                path="provider/dashboard"
+                element={<ProviderDashboard />}
+              />
+              <Route path="provider/availability" element={<Availability />} />
+              <Route path="provider/requests" element={<BookingRequests />} />
+              <Route path="provider/earnings" element={<Earnings />} />
+              <Route path="provider/profile" element={<ProviderProfile />} />
+              <Route path="provider/jobs" element={<ActiveJobs />} />
+            </Route>
+          </Route>
+          <Route element={<ProtectedRoute allowedRoles={["customer"]} />}>
+            <Route element={<DashboardLayout />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="bookings" element={<MyBookings />} />
+              <Route path="reviews" element={<MyReviews />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
         </Routes>
         <Toaster richColors position="top-right" />
