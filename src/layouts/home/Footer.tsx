@@ -3,41 +3,42 @@ import { FaXTwitter } from "react-icons/fa6"
 import { FaInstagram } from "react-icons/fa"
 import { FiLinkedin } from "react-icons/fi"
 import { Link } from "react-router-dom"
+import { Ship } from "lucide-react"
 
 const Footer = () => {
-   const footerSections = [
-     {
-       title: "Company",
-       links: [
-         { label: "About Us", href: "/about" },
-         { label: "Careers", href: "/careers" },
-         { label: "Contact", href: "/contact" },
-       ],
-     },
-     {
-       title: "Services",
-       links: [
-         { label: "Browse Services", href: "/services" },
-         { label: "Become a Provider", href: "/provider/dashboard" },
-         { label: "How it Works", href: "/" },
-       ],
-     },
-     {
-       title: "Legal",
-       links: [
-         { label: "Privacy Policy", href: "/privacy" },
-         { label: "Terms of Service", href: "/terms" },
-         { label: "Cookie Policy", href: "/cookies" },
-       ],
-     },
-   ]
+  const footerSections = [
+    {
+      title: "Company",
+      links: [
+        { label: "About Us", href: "/about" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
+    {
+      title: "Services",
+      links: [
+        { label: "Browse Services", href: "/services" },
+        { label: "Become a Provider", href: "/provider/dashboard" },
+        { label: "How it Works", href: "/" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Terms of Service", href: "/terms" },
+        { label: "Cookie Policy", href: "/cookies" },
+      ],
+    },
+  ]
 
-   const socialLinks = [
-     { icon: FiFacebook, href: "#" },
-     { icon: FaXTwitter, href: "#" },
-     { icon: FaInstagram, href: "#" },
-     { icon: FiLinkedin, href: "#" },
-   ]
+  const socialLinks = [
+    { icon: FiFacebook, href: "#" },
+    { icon: FaXTwitter, href: "#" },
+    { icon: FaInstagram, href: "#" },
+    { icon: FiLinkedin, href: "#" },
+  ]
   return (
     <footer className="border-t bg-muted/50">
       <div className="container mx-auto px-4 py-12">
@@ -45,15 +46,13 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <span className="text-lg text-primary-foreground">S</span>
-              </div>
-              <span className="text-xl font-semibold">ServiceHub</span>
+              <Ship className="h-6 w-6 text-primary" />
+              <span className="text-lg font-bold">OUJAT</span>
             </div>
 
             <p className="text-sm text-muted-foreground">
-              Book trusted local services instantly. Your one-stop platform for
-              all home services.
+              Connecting businesses with trusted logistics partners for seamless
+              shipping worldwide.
             </p>
           </div>
 
@@ -81,7 +80,7 @@ const Footer = () => {
         {/* Bottom Footer */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2026 ServiceHub. All rights reserved.
+            © 2026 OUJAT. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4">

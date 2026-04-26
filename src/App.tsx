@@ -31,6 +31,8 @@ import MyReviews from "./features/customer/pages/MyReviews"
 import Profile from "./features/customer/pages/Profile"
 import { Toaster } from "sonner"
 import { ProtectedRoute, PublicRoute } from "./lib/ProtectedRoute"
+import ServiceDetails from "./features/services/pages/ServiceDetails"
+import LiveRequests from "./features/live-requests/pages/LiveRequests"
 
 export function App() {
   return (
@@ -47,6 +49,8 @@ export function App() {
             <Route path="" element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="services" element={<Services />} />
+            <Route path="services/:id" element={<ServiceDetails />} />
+            <Route path="live-requests" element={<LiveRequests />} />
             <Route path="about" element={<AboutUs />} />
             <Route path="careers" element={<Careers />} />
             <Route path="contact" element={<Contact />} />

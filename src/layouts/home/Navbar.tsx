@@ -15,7 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { useAuthStore } from "@/stores/useAuthStore"
-import { LayoutDashboard, LogOut, Menu, User } from "lucide-react"
+import { LayoutDashboard, LogOut, Menu, Ship, User } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
@@ -36,8 +36,10 @@ const Navbar = () => {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
-    { label: "How it Works", href: "/#how-it-works" },
-    { label: "Become Provider", href: "/provider" },
+    { label: "Live Requests", href: "/live-requests" },
+
+    // { label: "How it Works", href: "/#how-it-works" },
+    // { label: "Become Provider", href: "/provider" },
   ]
 
   return (
@@ -47,10 +49,10 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <span className="text-lg text-primary-foreground">S</span>
+              <div className="flex items-center gap-2">
+                <Ship className="h-6 w-6 text-primary" />
+                <span className="text-lg font-bold">OUJAT</span>
               </div>
-              <span className="text-xl font-semibold">ServiceHub</span>
             </Link>
 
             {/* Desktop Links */}
@@ -111,9 +113,14 @@ const Navbar = () => {
                 <Link to={getDashboardRoute()}>Dashboard</Link>
               </Button>
             ) : (
-              <Button variant="outline" asChild className="hidden md:flex">
-                <Link to="/login">Login</Link>
-              </Button>
+              <>
+                <Button variant="outline" asChild className="hidden md:flex">
+                  <Link to="/login">Login</Link>
+                </Button>
+                <Button className="hidden md:flex">
+                  <Link to="/signup">Get Started</Link>
+                </Button>
+              </>
             )}
 
             {/* Login Button (Desktop) */}
@@ -142,18 +149,23 @@ const Navbar = () => {
                       {link.label}
                     </Link>
                   ))}
+                  {isAuthenticated ? (
+                    <>
+                      <Button asChild className="w-full">
+                        <Link to="/dashboard">Dashboard</Link>
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button asChild variant="outline" className="w-full">
+                        <Link to="/login">Login</Link>
+                      </Button>
 
-                  <Button asChild variant="outline" className="w-full">
-                    <Link to="/login">Login</Link>
-                  </Button>
-
-                  <Button asChild className="w-full">
-                    <Link to="/signup">Sign Up</Link>
-                  </Button>
-
-                  <Button asChild className="w-full">
-                    <Link to="/dashboard">Dashboard</Link>
-                  </Button>
+                      <Button asChild className="w-full">
+                        <Link to="/signup">Get Started</Link>
+                      </Button>
+                    </>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
