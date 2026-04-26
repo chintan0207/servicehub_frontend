@@ -9,7 +9,6 @@ import TermsOfService from "./features/termsofservice/pages/TermsOfService"
 import Careers from "./features/careers/pages/Careers"
 import PrivacyPolicy from "./features/privacypolicy/pages/PrivacyPolicy"
 import Contact from "./features/contact/pages/Contact"
-import AboutUs from "./features/aboutus/pages/AboutUs"
 import CookiePolicy from "./features/cookiepolicy/pages/CookiePolicy"
 import NotFoundPage from "./components/common/NotFoundPage"
 import AdminDashboard from "./features/admin/pages/AdminDashboard"
@@ -33,6 +32,7 @@ import { Toaster } from "sonner"
 import { ProtectedRoute, PublicRoute } from "./lib/ProtectedRoute"
 import ServiceDetails from "./features/services/pages/ServiceDetails"
 import LiveRequests from "./features/live-requests/pages/LiveRequests"
+import { AboutUs } from "./features/aboutus/pages/AboutUs"
 
 export function App() {
   return (
@@ -51,7 +51,7 @@ export function App() {
             <Route path="services" element={<Services />} />
             <Route path="services/:id" element={<ServiceDetails />} />
             <Route path="live-requests" element={<LiveRequests />} />
-            <Route path="about" element={<AboutUs />} />
+            <Route path="about" element={<AboutUs/>} />
             <Route path="careers" element={<Careers />} />
             <Route path="contact" element={<Contact />} />
             <Route path="terms" element={<TermsOfService />} />

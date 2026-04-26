@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { Search, Ship } from "lucide-react"
-import { Link } from "react-router-dom"
 import ServiceCard from "../components/ServiceCard"
 import { Input } from "@/components/ui/input"
 

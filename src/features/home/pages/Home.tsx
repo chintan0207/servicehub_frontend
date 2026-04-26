@@ -1,8 +1,19 @@
+import BusinessesWorldwide from "../components/BusinessesWorldwide"
+import GetStarted from "../components/GetStarted"
+import Herosection from "../components/Herosection"
+import { ServiceCategories } from "../components/ServiceCategories"
+import WhyShipGlobal from "../components/WhyShipGlobal"
+
 const Home = () => {
   return (
     <div className="">
-      <h2>Home Page</h2>
+      <Herosection/>
+      <WhyShipGlobal/>
+      <ServiceCategories/>
+      <BusinessesWorldwide/>
+      <GetStarted/>
     </div>
+
   )
 }
 
