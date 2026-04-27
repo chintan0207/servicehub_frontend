@@ -1,6 +1,6 @@
 import BusinessesWorldwide from "../components/BusinessesWorldwide"
 import GetStarted from "../components/GetStarted"
-import Herosection from "../components/Herosection"
+import Herosection from "../components/HeroSection"
 import { ServiceCategories } from "../components/ServiceCategories"
 import WhyShipGlobal from "../components/WhyShipGlobal"
 

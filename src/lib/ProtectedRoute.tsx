@@ -3,7 +3,7 @@ import { useAuthStore } from "@/stores/useAuthStore"
 import { Navigate, Outlet } from "react-router-dom"
 
 type Props = {
-  allowedRoles?: ("admin" | "provider" | "customer")[]
+  allowedRoles?: ("admin" | "agent" | "customer")[]
 }
 
 export const ProtectedRoute = ({ allowedRoles }: Props) => {

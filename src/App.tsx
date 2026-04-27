@@ -10,22 +10,7 @@ import PrivacyPolicy from "./features/privacypolicy/pages/PrivacyPolicy"
 import CookiePolicy from "./features/cookiepolicy/pages/CookiePolicy"
 import NotFoundPage from "./components/common/NotFoundPage"
 import AdminDashboard from "./features/admin/pages/AdminDashboard"
-import ContactSubmissions from "./features/admin/pages/ContactSubmissions"
-import Reviews from "./features/admin/pages/Reviews"
-import UserManagement from "./features/admin/pages/UserManagement"
-import ProviderApproval from "./features/admin/pages/ProviderApproval"
-import CategoryManagement from "./features/admin/pages/CategoryManagement"
-import BookingMonitoring from "./features/admin/pages/BookingMonitoring"
-import ProviderProfile from "./features/provider/pages/ProviderProfile"
-import ActiveJobs from "./features/provider/pages/ActiveJobs"
-import Earnings from "./features/provider/pages/Earnings"
-import BookingRequests from "./features/provider/pages/BookingRequests"
-import Availability from "./features/provider/pages/Availability"
-import ProviderDashboard from "./features/provider/pages/ProviderDashboard"
-import Dashboard from "./features/customer/pages/Dashboard"
-import MyBookings from "./features/customer/pages/MyBookings"
-import MyReviews from "./features/customer/pages/MyReviews"
-import Profile from "./features/customer/pages/Profile"
+
 import { Toaster } from "sonner"
 import { ProtectedRoute, PublicRoute } from "./lib/ProtectedRoute"
 import LiveRequests from "./features/live-requests/pages/LiveRequests"
@@ -33,6 +18,21 @@ import { AboutUs } from "./features/aboutus/pages/AboutUs"
 import { Careers } from "./features/careers/pages/Careers"
 import { Contact } from "./features/contact/pages/Contact"
 import { ServiceDetails } from "./features/services/pages/ServiceDetails"
+import AgentDashboard from "./features/agent/pages/AgentDashboard"
+import Quotes from "./features/agent/pages/Quotes"
+import RFQMarketPlace from "./features/agent/pages/RFQMarketPlace"
+import CustomerDashboard from "./features/customer/pages/CustomerDashboard"
+import CreateRFQ from "./features/customer/pages/CreateRFQ"
+import RFQList from "./features/customer/pages/RFQList"
+import RFQDetail from "./features/customer/pages/RFQDetail"
+import QuoteComparison from "./features/customer/pages/QuoteComparison"
+import AgentOrders from "./features/agent/pages/AgentOrders"
+import Orders from "./features/customer/pages/Orders"
+import OrderDetail from "./features/customer/pages/OrderDetail"
+import ContactSubmissions from "./features/admin/pages/ContactSubmissions"
+import Transactions from "./features/admin/pages/Transactions"
+import UserManagement from "./features/admin/pages/UserManagement"
+
 
 export function App() {
   return (
@@ -42,6 +42,11 @@ export function App() {
           <Route element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+
+            
+
+
+
           </Route>
           <Route path="*" element={<NotFoundPage />} />
 
@@ -60,34 +65,32 @@ export function App() {
           </Route>
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
             <Route element={<DashboardLayout />}>
-              <Route path="admin/dashboard" element={<AdminDashboard />} />
-              <Route path="admin/users" element={<UserManagement />} />
-              <Route path="admin/approvals" element={<ProviderApproval />} />
-              <Route path="admin/categories" element={<CategoryManagement />} />
-              <Route path="admin/Bookings" element={<BookingMonitoring />} />
-              <Route path="admin/reviews" element={<Reviews />} />
+              <Route path="admin/dashboard" element={<AdminDashboard />} />              
               <Route path="admin/contact" element={<ContactSubmissions />} />
+              <Route path="admin/transactions" element={<Transactions />} />
+              <Route path="admin/user-management" element={<UserManagement />} />
             </Route>
           </Route>
-          <Route element={<ProtectedRoute allowedRoles={["provider"]} />}>
+          <Route element={<ProtectedRoute allowedRoles={["agent"]} />}>
             <Route element={<DashboardLayout />}>
               <Route
-                path="provider/dashboard"
-                element={<ProviderDashboard />}
+                path="agent/dashboard"
+                element={<AgentDashboard />}
               />
-              <Route path="provider/availability" element={<Availability />} />
-              <Route path="provider/requests" element={<BookingRequests />} />
-              <Route path="provider/earnings" element={<Earnings />} />
-              <Route path="provider/profile" element={<ProviderProfile />} />
-              <Route path="provider/jobs" element={<ActiveJobs />} />
+              <Route path="agent/orders" element={<AgentOrders />} />
+              <Route path="agent/quotes" element={<Quotes />} />
+              <Route path="agent/rfq-market" element={<RFQMarketPlace />} />
             </Route>
           </Route>
           <Route element={<ProtectedRoute allowedRoles={["customer"]} />}>
             <Route element={<DashboardLayout />}>
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="bookings" element={<MyBookings />} />
-              <Route path="reviews" element={<MyReviews />} />
-              <Route path="profile" element={<Profile />} />
+              <Route path="customer/dashboard" element={<CustomerDashboard />} />
+              <Route path="customer/create-rfq" element={<CreateRFQ />} />
+              <Route path="customer/rfqs" element={<RFQList />} />
+              <Route path="customer/rfqs/:id" element={<RFQDetail />} />
+              <Route path="customer/compare/:id" element={<QuoteComparison />} />
+              <Route path="customer/orders" element={<Orders />} />
+              <Route path="customer/orders/:id" element={<OrderDetail />} />
             </Route>
           </Route>
         </Routes>

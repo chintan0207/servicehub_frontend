@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 
-import { Clock, ChevronDown } from "lucide-react"
+import { Clock, ChevronDown, Package, Globe } from "lucide-react"
 import {
   LayoutDashboard,
   Calendar,
@@ -49,48 +49,113 @@ import { Button } from "@/components/ui/button"
 import { Link } from "react-router-dom"
 import { useAuthStore } from "@/stores/useAuthStore"
 
-const getNavItems = (role: "customer" | "provider" | "admin") => {
+// const getNavItems = (role: "customer" | "agent" | "admin") => {
+//   switch (role) {
+//     case "customer":
+//       return [
+//         {
+//           name: "Dashboard",
+//           href: "/dashboard",
+//           icon: LayoutDashboard,
+//         },
+//         { name: "My Bookings", href: "/bookings", icon: Calendar },
+//         { name: "My Reviews", href: "/reviews", icon: Star },
+//         { name: "Profile", href: "/profile", icon: User },
+//       ]
+//     case "agent":
+//       return [
+//         {
+//           name: "Dashboard",
+//           href: "/provider/dashboard",
+//           icon: LayoutDashboard,
+//         },
+//         {
+//           name: "Booking Requests",
+//           href: "/provider/requests",
+//           icon: ClipboardList,
+//         },
+//         { name: "Active Jobs", href: "/provider/jobs", icon: CheckSquare },
+//         { name: "Availability", href: "/provider/availability", icon: Clock },
+//         { name: "Earnings", href: "/provider/earnings", icon: DollarSign },
+//         { name: "Profile", href: "/provider/profile", icon: User },
+//       ]
+//     case "admin":
+//       return [
+//         { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+//         { name: "User Management", href: "/admin/users", icon: Users },
+//         { name: "Provider Approval", href: "/admin/approvals", icon: Shield },
+//         { name: "Categories", href: "/admin/categories", icon: FileText },
+//         { name: "Bookings", href: "/admin/bookings", icon: Calendar },
+//         { name: "Reviews", href: "/admin/reviews", icon: MessageSquare },
+//         { name: "Contact Submissions", href: "/admin/contact", icon: Mail },
+//       ]
+//   }
+// }
+const getNavItems = (role: "customer" | "agent" | "admin") => {
   switch (role) {
     case "customer":
       return [
         {
           name: "Dashboard",
-          href: "/dashboard",
+          href: "/customer/dashboard",
           icon: LayoutDashboard,
         },
-        { name: "My Bookings", href: "/bookings", icon: Calendar },
-        { name: "My Reviews", href: "/reviews", icon: Star },
-        { name: "Profile", href: "/profile", icon: User },
-      ]
-    case "provider":
+        {
+          name: "Create RFQ",
+          href: "/customer/create-rfq",
+          icon: FileText,
+        },
+        {
+          name: "My RFQs",
+          href: "/customer/rfqs",
+          icon: ClipboardList,
+        },
+        {
+          name: "Orders",
+          href: "/customer/orders",
+          icon: Package,
+        },
+      ];
+
+    case "agent":
       return [
         {
           name: "Dashboard",
-          href: "/provider/dashboard",
+          href: "/agent/dashboard",
           icon: LayoutDashboard,
         },
         {
-          name: "Booking Requests",
-          href: "/provider/requests",
-          icon: ClipboardList,
+          name: "Orders",
+          href: "/agent/orders",
+          icon: Package,
         },
-        { name: "Active Jobs", href: "/provider/jobs", icon: CheckSquare },
-        { name: "Availability", href: "/provider/availability", icon: Clock },
-        { name: "Earnings", href: "/provider/earnings", icon: DollarSign },
-        { name: "Profile", href: "/provider/profile", icon: User },
-      ]
+        {
+          name: "Quotes",
+          href: "/agent/quotes",
+          icon: FileText,
+        },
+        {
+          name: "RFQ Marketplace",
+          href: "/agent/rfq-market",
+          icon: Globe,
+        },
+      ];
+
     case "admin":
       return [
-        { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-        { name: "User Management", href: "/admin/users", icon: Users },
-        { name: "Provider Approval", href: "/admin/approvals", icon: Shield },
-        { name: "Categories", href: "/admin/categories", icon: FileText },
-        { name: "Bookings", href: "/admin/bookings", icon: Calendar },
-        { name: "Reviews", href: "/admin/reviews", icon: MessageSquare },
-        { name: "Contact Submissions", href: "/admin/contact", icon: Mail },
-      ]
+        {
+          name: "Dashboard",
+          href: "/admin/dashboard",
+          icon: LayoutDashboard,
+        },
+        {
+          name: "Contact Submissions",
+          href: "/admin/contact",
+          icon: Mail,
+        },
+      ];
   }
-}
+};
 
 const Sidebar = () => {
   const { user,logout } = useAuthStore()
