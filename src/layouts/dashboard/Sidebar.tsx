@@ -9,19 +9,12 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 
-import { Clock, ChevronDown, Package, Globe } from "lucide-react"
+import {  ChevronDown, Package, Globe } from "lucide-react"
 import {
   LayoutDashboard,
-  Calendar,
-  User,
   FileText,
-  CheckSquare,
   ClipboardList,
-  Star,
-  DollarSign,
-  Users,
-  Shield,
-  MessageSquare,
+ 
   Mail,
 } from "lucide-react"
 
@@ -97,22 +90,22 @@ const getNavItems = (role: "customer" | "agent" | "admin") => {
       return [
         {
           name: "Dashboard",
-          href: "/customer/dashboard",
+          href: "/dashboard",
           icon: LayoutDashboard,
         },
         {
           name: "Create RFQ",
-          href: "/customer/create-rfq",
+          href: "/create-rfq",
           icon: FileText,
         },
         {
           name: "My RFQs",
-          href: "/customer/rfqs",
+          href: "/rfqs",
           icon: ClipboardList,
         },
         {
           name: "Orders",
-          href: "/customer/orders",
+          href: "/orders",
           icon: Package,
         },
       ];

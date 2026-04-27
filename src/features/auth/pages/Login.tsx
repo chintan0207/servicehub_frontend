@@ -36,8 +36,8 @@ const Login = () => {
     if (success) {
       const role = useAuthStore.getState().user?.role
 
-      if (role === "provider") {
-        navigate("/provider/dashboard")
+      if (role === "agent") {
+        navigate("/agent/dashboard")
       } else if (role === "admin") {
         navigate("/admin/dashboard")
       } else {

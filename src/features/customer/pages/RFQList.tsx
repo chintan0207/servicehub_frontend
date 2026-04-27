@@ -67,7 +67,7 @@ const RFQList = () => {
             <p className="text-muted-foreground">Manage all your request for quotes</p>
           </div>
 
-          <Link to="/customer/create-rfq">
+          <Link to="/create-rfq">
             {/* FIXED */}
             <Button variant="default">Create New RFQ</Button>
           </Link>
@@ -151,7 +151,7 @@ const RFQList = () => {
                     <td className="py-4 px-4 text-muted-foreground">{rfq.created}</td>
 
                     <td className="py-4 px-4">
-                      <Link to={`/customer/rfqs/${rfq.id}`}>
+                      <Link to={`/rfqs/${rfq.id}`}>
                         <Button variant="outline" size="sm">
                           View
                         </Button>

@@ -10,7 +10,7 @@ export const signupSchema = z
 
     confirmPassword: z.string().min(1, "Confirm your password"),
 
-    role: z.enum(["customer", "provider"]),
+    role: z.enum(["customer", "agent"]),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",

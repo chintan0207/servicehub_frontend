@@ -35,7 +35,7 @@ const Signup = () => {
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      role: type === "provider" ? "provider" : "customer",
+      role: type === "agent" ? "agent" : "customer",
     },
   })
 
@@ -113,8 +113,8 @@ const Signup = () => {
 
                     <Button
                       type="button"
-                      variant={role === "provider" ? "default" : "outline"}
-                      onClick={() => setValue("role", "provider")}
+                      variant={role === "agent" ? "default" : "outline"}
+                      onClick={() => setValue("role", "agent")}
                       className="flex-1"
                     >
                       Provider

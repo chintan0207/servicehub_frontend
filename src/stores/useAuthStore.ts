@@ -8,7 +8,7 @@ type User = {
   _id: string
   name: string
   email: string
-  role: "customer" | "provider" | "admin"
+  role: "customer" | "agent" | "admin"
   isVerified: boolean
 }
 
@@ -24,7 +24,7 @@ type AuthState = {
     name: string
     email: string
     password: string
-    role: "customer" | "provider" | "admin"
+    role: "customer" | "agent" | "admin"
   }) => Promise<boolean>
 
   logout: () => void
