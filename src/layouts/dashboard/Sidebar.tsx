@@ -172,7 +172,7 @@ const Sidebar = () => {
 
               {/* Text */}
               <div className="flex flex-col text-left group-data-[collapsible=icon]:hidden">
-                <span className="text-sm font-semibold">ServiceHub</span>
+                <span className="text-sm font-semibold">Oujat</span>
                 <span className="text-xs text-muted-foreground">
                   {user?.role}
                 </span>
@@ -184,7 +184,7 @@ const Sidebar = () => {
 
           <DropdownMenuContent align="start">
             <Link to="/">
-              <DropdownMenuItem>ServiceHub</DropdownMenuItem>
+              <DropdownMenuItem>Oujat</DropdownMenuItem>
             </Link>
             <DropdownMenuItem>Create categories</DropdownMenuItem>
           </DropdownMenuContent>

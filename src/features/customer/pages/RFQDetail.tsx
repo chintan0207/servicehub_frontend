@@ -60,7 +60,7 @@ const RFQDetail = () => {
             <p className="text-muted-foreground">Created on {rfqData.created}</p>
           </div>
 
-          <Link to={`/customer/compare/${id}`}>
+          <Link to={`/compare/${id}`}>
             <Button variant="outline">
               <TrendingUp className="w-5 h-5" />
               Compare Quotes

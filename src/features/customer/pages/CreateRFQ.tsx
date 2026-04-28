@@ -44,7 +44,7 @@ const CreateRFQ = () => {
 
   const handleSubmit = () => {
     toast.success("RFQ submitted successfully!");
-    navigate("/customer/rfqs");
+    navigate("/rfqs");
   };
 
   return (
