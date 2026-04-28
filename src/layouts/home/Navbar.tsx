@@ -21,12 +21,24 @@ import { Link } from "react-router-dom"
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuthStore()
 
+  // const getDashboardRoute = () => {
+  //   switch (user?.role) {
+  //     case "admin":
+  //       return "/admin/dashboard"
+  //     case "provider":
+  //       return "/provider/dashboard"
+  //     case "customer":
+  //       return "/dashboard"
+  //     default:
+  //       return "/"
+  //   }
+  // }
   const getDashboardRoute = () => {
     switch (user?.role) {
       case "admin":
         return "/admin/dashboard"
-      case "provider":
-        return "/provider/dashboard"
+      case "agent": // ✅ CHANGE THIS
+        return "/agent/dashboard"
       case "customer":
         return "/dashboard"
       default:

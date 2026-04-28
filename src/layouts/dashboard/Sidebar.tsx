@@ -9,14 +9,8 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 
-import {  ChevronDown, Package, Globe } from "lucide-react"
-import {
-  LayoutDashboard,
-  FileText,
-  ClipboardList,
- 
-  Mail,
-} from "lucide-react"
+import { ChevronDown, Package, Globe } from "lucide-react"
+import { LayoutDashboard, FileText, ClipboardList, Mail } from "lucide-react"
 
 import {
   DropdownMenu,
@@ -108,7 +102,7 @@ const getNavItems = (role: "customer" | "agent" | "admin") => {
           href: "/orders",
           icon: Package,
         },
-      ];
+      ]
 
     case "agent":
       return [
@@ -132,7 +126,7 @@ const getNavItems = (role: "customer" | "agent" | "admin") => {
           href: "/agent/rfq-market",
           icon: Globe,
         },
-      ];
+      ]
 
     case "admin":
       return [
@@ -146,12 +140,12 @@ const getNavItems = (role: "customer" | "agent" | "admin") => {
           href: "/admin/contact",
           icon: Mail,
         },
-      ];
+      ]
   }
-};
+}
 
 const Sidebar = () => {
-  const { user,logout } = useAuthStore()
+  const { user, logout } = useAuthStore()
   const mainMenu = getNavItems(user?.role as any)
   return (
     <SidebarRoot collapsible="icon">
@@ -166,13 +160,13 @@ const Sidebar = () => {
               {/* Logo */}
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
                 <span className="text-sm font-bold text-primary-foreground">
-                  S
+                  O
                 </span>
               </div>
 
               {/* Text */}
               <div className="flex flex-col text-left group-data-[collapsible=icon]:hidden">
-                <span className="text-sm font-semibold">ServiceHub</span>
+                <span className="text-sm font-semibold">Oujat</span>
                 <span className="text-xs text-muted-foreground">
                   {user?.role}
                 </span>
@@ -262,7 +256,7 @@ const Sidebar = () => {
 
             <DropdownMenuSeparator />
 
-            <DropdownMenuItem onClick={logout} >Log out</DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>Log out</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarFooter>
