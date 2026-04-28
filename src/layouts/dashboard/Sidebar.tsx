@@ -178,7 +178,7 @@ const Sidebar = () => {
 
           <DropdownMenuContent align="start">
             <Link to="/">
-              <DropdownMenuItem>ServiceHub</DropdownMenuItem>
+              <DropdownMenuItem>Oujat</DropdownMenuItem>
             </Link>
             <DropdownMenuItem>Create categories</DropdownMenuItem>
           </DropdownMenuContent>

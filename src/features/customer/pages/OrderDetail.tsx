@@ -65,7 +65,7 @@ const OrderDetail = () => {
 
             <p className="text-muted-foreground">
               RFQ Reference:{" "}
-              <Link to={`/customer/rfqs/${orderData.rfqId}`} className="text-primary hover:underline">
+              <Link to={`/rfqs/${orderData.rfqId}`} className="text-primary hover:underline">
                 {orderData.rfqId}
               </Link>
             </p>
@@ -164,7 +164,7 @@ const OrderDetail = () => {
               </div>
             </div>
 
-            <Link to="/customer/chat">
+            <Link to="/chat">
               <Button variant="outline" className="w-full mt-4">
                 <MessageSquare className="w-5 h-5" />
                 Send Message
@@ -263,7 +263,7 @@ const OrderDetail = () => {
             ))}
           </div>
 
-          <Link to="/customer/chat">
+          <Link to="/chat">
             <Button variant="outline" className="w-full mt-4">
               View Full Conversation
             </Button>

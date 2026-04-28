@@ -118,7 +118,7 @@ const Orders = () => {
                   </div>
                 </div>
 
-                <Link to={`/customer/orders/${order.id}`}>
+                <Link to={`/orders/${order.id}`}>
                   <Button variant="default">View Details</Button>
                 </Link>
 
@@ -145,7 +145,7 @@ const Orders = () => {
                   : "You don't have any completed orders yet."}
               </p>
 
-              <Link to="/customer/rfqs">
+              <Link to="/rfqs">
                 <Button variant="default">View Your RFQs</Button>
               </Link>
 

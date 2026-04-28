@@ -48,7 +48,7 @@ const CustomerDashboard = () => {
 
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold text-foreground">Recent RFQ Activity</h2>
-          <Link to="/customer/create-rfq">
+          <Link to="/create-rfq">
             <Button variant="default">Create New RFQ</Button>
           </Link>
         </div>
@@ -89,7 +89,7 @@ const CustomerDashboard = () => {
                     <td className="py-4 px-4 text-muted-foreground">{rfq.created}</td>
 
                     <td className="py-4 px-4">
-                      <Link to={`/customer/rfqs/${rfq.id}`}>
+                      <Link to={`/rfqs/${rfq.id}`}>
                         <Button variant="outline" size="sm">
                           View Details
                         </Button>
@@ -109,21 +109,21 @@ const CustomerDashboard = () => {
             <h3 className="text-xl font-semibold text-foreground mb-4">Quick Actions</h3>
 
             <div className="space-y-3">
-              <Link to="/customer/create-rfq" className="block">
+              <Link to="/create-rfq" className="block">
                 <Button variant="outline" className="w-full justify-start">
                   <FileText className="w-5 h-5" />
                   Create New RFQ
                 </Button>
               </Link>
 
-              <Link to="/customer/rfqs" className="block">
+              <Link to="/rfqs" className="block">
                 <Button variant="outline" className="w-full justify-start">
                   <Package className="w-5 h-5" />
                   View All RFQs
                 </Button>
               </Link>
 
-              <Link to="/customer/orders" className="block">
+              <Link to="/orders" className="block">
                 <Button variant="outline" className="w-full justify-start">
                   <TrendingUp className="w-5 h-5" />
                   Track Shipments
